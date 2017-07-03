@@ -14,21 +14,26 @@ public class WordAndPunctuation implements Splitter {
     public List<String> split(List<String> list) {
 
         List<String> words = new ArrayList<String>();
-        Pattern p = Pattern.compile("\\s*(\\s|\\@\\#)\\s*");
+        //Pattern p = Pattern.compile("\\s*(\\s|\\@\\#)\\s*");
+        Pattern p = Pattern.compile("\\@\\#");
 
         for (String s : list) {
+
             s = s.replace(",", "@#,@#");
             s = s.replace(".", "@#.@#");
             s = s.replace("!", "@#!@#");
             s = s.replace("?", "@#?@#");
             s = s.replace(":", "@#:@#");
             s = s.replace(";", "@#;@#");
+            s = s.replace(" ", "@# @#");
 
             for (String s1 : p.split(s)) {
                 words.add(s1);
             }
+            words.add(" ");
         }
 
+        words.remove(words.size() - 1);
         return words;
     }
 }

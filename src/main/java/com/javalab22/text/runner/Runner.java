@@ -1,9 +1,6 @@
 package com.javalab22.text.runner;
 
-import com.javalab22.text.entity.Paragraph;
-import com.javalab22.text.entity.Text;
-import com.javalab22.text.entity.Sentence;
-import com.javalab22.text.entity.WordAndPunctuation;
+import com.javalab22.text.entity.*;
 import com.javalab22.text.operation.Print;
 import com.javalab22.text.util.InputFromFile;
 import com.javalab22.text.util.OutputToFile;
@@ -25,20 +22,22 @@ public class Runner {
         text.addText(new InputFromFile().readFile("text.txt"));
 
         Print print = new Print();
-        print.printArrayList(text.getText());
+        //print.printArrayList(text.getText());
 
         List<String> paragraphs = new Paragraph().split(text.getText());
-        print.printArrayList(paragraphs);
+        //print.printArrayList(paragraphs);
 
         List<String> sentences = (new Sentence()).split(paragraphs);
-        print.printArrayList(sentences);
+        //print.printArrayList(sentences);
 
         List<String> words = (new WordAndPunctuation().split(sentences));
-        print.printArrayList(words);
+        //print.printArrayList(words);
 
-        OutputToFile out = new OutputToFile();
+        List<String> letters = (new Letters().split(words));
+        print.printArrayList(letters);
+
+                OutputToFile out = new OutputToFile();
         out.outputToFile(text);
-
     }
 }
 
